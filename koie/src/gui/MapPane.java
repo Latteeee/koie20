@@ -23,6 +23,7 @@ public class MapPane extends JPanel {
 	private JLabel labInfo;
 	private JLabel labData;
 	private JLabel labKoieInfo;
+	private JButton btnMerInfo;
 	public MapPane(GUI gui) {
 		g = gui;
 		this.setSize(600, 500);
@@ -76,6 +77,7 @@ public class MapPane extends JPanel {
 			buttons.get(buttons.size()-1).addActionListener(new ActionListener(){ //Skal vise kort info om valgt koie
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+					btnMerInfo.setEnabled(true);
 					labKoieInfo.setText(o.toString());
 					labInfo.setText("<html>Sengeplasser"+"<br>Bordplasser"+"<br>Bygget i"+"</html>");
 					labData.setText("<html>"+map.get(o).get(0)+"<br>"+map.get(o).get(1)+"<br>"+map.get(o).get(2)+"</html>");
@@ -96,12 +98,13 @@ public class MapPane extends JPanel {
 		btnReserver.setBounds(321, 381, 89, 23);
 		add(btnReserver);
 		
-		JButton btnMerInfo = new JButton("Mer info");
+		btnMerInfo = new JButton("Mer info");
 		btnMerInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				g.switchPane("tablePane", labKoieInfo.getText());;
 			}
 		});
+		btnMerInfo.setEnabled(false);
 		btnMerInfo.setBounds(321, 415, 89, 23);
 		add(btnMerInfo);
 		

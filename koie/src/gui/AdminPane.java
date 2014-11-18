@@ -199,18 +199,6 @@ public class AdminPane extends JPanel {
 				labOutput.setBounds(447, 78, 126, 50);
 				start.add(labOutput);
 				
-				JButton btnOppdater = new JButton("Oppdater");
-				btnOppdater.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						lstKoier.removeAll();
-						lstWood.removeAll();
-						updateInfo();
-						jspL = new JScrollPane(lists);
-					}
-				});
-				btnOppdater.setBounds(481, 166, 89, 23);
-				start.add(btnOppdater);
-				
 				labEdit = new JLabel();
 				labEdit.setBounds(200, 68, 89, 20);
 				start.add(labEdit);

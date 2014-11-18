@@ -28,8 +28,8 @@ public class GUI extends JFrame{
 		
 		tablePane = new TablePane(this);
 		
-		contentPanel.add("Reserver",reservePane);
 		contentPanel.add("Kart",mapPane);
+		contentPanel.add("Reserver",reservePane);
 		contentPanel.add("Mer info",tablePane);
 		
 		
@@ -46,6 +46,7 @@ public class GUI extends JFrame{
 		if (pane == "reservePane"){
 			contentPanel.setSelectedComponent(reservePane);
 			reservePane.setReserve(arg);
+			reservePane.nameClicked();
 		}
 	}
 		

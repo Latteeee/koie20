@@ -147,28 +147,7 @@ public class ReservePane extends JPanel{
 		ActionListener cbActionListener = new ActionListener() {//add actionlistner to listen for change
             @Override
             public void actionPerformed(ActionEvent e) {
-            	labKname.setText(names.get(comboBox.getSelectedIndex())+" - maks "+sengeplassr.get(comboBox.getSelectedIndex())+" sengeplasser.");
-            	labReservers.setText("<html>"+comboBox.getSelectedItem().toString()+"<br>");
-            	Map<String,Integer> rsrvs = new HashMap<String,Integer>();
-            	for (int i = 0; i < reservationsList.size(); i++) {
-        			
-        			if ((int) reservationsList.get(i).get(0) == g.CoreClass.getKoieID(comboBox.getSelectedItem().toString())) {
-        				Calendar cal = new GregorianCalendar();
-        				cal.setTime((Date) reservationsList.get(i).get(1));
-        				if (rsrvs.get(cal.getTime().toString())==null){
-        					rsrvs.put(cal.getTime().toString(),Integer.parseInt(reservationsList.get(i).get(2).toString()));
-        				}
-        				else rsrvs.put(cal.getTime().toString(),rsrvs.get(cal.getTime().toString())+Integer.parseInt(reservationsList.get(i).get(2).toString()));
-        			}
-        		}
-            	
-            	for(Entry<String, Integer> entry : rsrvs.entrySet()) {
-            	    String key = entry.getKey();
-            	    Integer value = entry.getValue();
-            	    labReservers.setText(labReservers.getText()+" er reservert den "+ key.substring(0,key.length()-17)+" med "+value+" personer.<br>");
-
-            	}
-            	labReservers.setText(labReservers.getText()+"</html>");
+            	nameClicked();
            }
         };
         comboBox.addActionListener(cbActionListener);
@@ -197,6 +176,31 @@ public class ReservePane extends JPanel{
 		jspR.setBounds(283, 200, 283, 142);
 		add(jspR);
 	}
+	public void nameClicked(){
+		labKname.setText(names.get(comboBox.getSelectedIndex())+" - maks "+sengeplassr.get(comboBox.getSelectedIndex())+" sengeplasser.");
+    	labReservers.setText("<html>"+comboBox.getSelectedItem().toString()+"<br>");
+    	Map<String,Integer> rsrvs = new HashMap<String,Integer>();
+    	for (int i = 0; i < reservationsList.size(); i++) {
+			
+			if ((int) reservationsList.get(i).get(0) == g.CoreClass.getKoieID(comboBox.getSelectedItem().toString())) {
+				Calendar cal = new GregorianCalendar();
+				cal.setTime((Date) reservationsList.get(i).get(1));
+				if (rsrvs.get(cal.getTime().toString())==null){
+					rsrvs.put(cal.getTime().toString(),Integer.parseInt(reservationsList.get(i).get(2).toString()));
+				}
+				else rsrvs.put(cal.getTime().toString(),rsrvs.get(cal.getTime().toString())+Integer.parseInt(reservationsList.get(i).get(2).toString()));
+			}
+		}
+    	
+    	for(Entry<String, Integer> entry : rsrvs.entrySet()) {
+    	    String key = entry.getKey();
+    	    Integer value = entry.getValue();
+    	    labReservers.setText(labReservers.getText()+" er reservert den "+ key.substring(0,key.length()-17)+" med "+value+" personer.<br>");
+
+    	}
+    	labReservers.setText(labReservers.getText()+"</html>");
+	}
+	
 	public void setWarnings(Map<String, Integer> koiewood) {
 		warnings = koiewood;
 	}
